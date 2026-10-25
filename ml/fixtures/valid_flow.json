@@ -1,0 +1,21 @@
+{
+  "flow_duration_us": 1500000,
+  "total_fwd_packets": 10,
+  "total_bwd_packets": 8,
+  "total_fwd_bytes": 1200,
+  "total_bwd_bytes": 9400,
+  "fwd_pkt_len_mean": 120.0,
+  "bwd_pkt_len_mean": 1175.0,
+  "pkt_len_std": 410.5,
+  "flow_bytes_per_s": 7066.7,
+  "flow_pkts_per_s": 12.0,
+  "flow_iat_mean": 83333.3,
+  "flow_iat_std": 90000.0,
+  "flow_iat_max": 400000.0,
+  "syn_flag_count": 1,
+  "ack_flag_count": 15,
+  "rst_flag_count": 0,
+  "fin_flag_count": 2,
+  "psh_flag_count": 6,
+  "protocol": 6
+}

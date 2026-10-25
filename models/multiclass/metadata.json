@@ -1,0 +1,272 @@
+{
+  "model_version": "rf-d64f3a43de",
+  "trained_at_utc": "2026-10-25T07:21:50+00:00",
+  "feature_schema_version": "1.0-draft",
+  "feature_schema": {
+    "schema_version": "1.0-draft",
+    "flow_definition": "Bidirectional flow as produced by CICFlowMeter. fwd = direction of first packet, bwd = reverse.",
+    "numeric_features": [
+      {
+        "name": "flow_duration_us",
+        "source_column": "Flow Duration",
+        "dtype": "int",
+        "unit": "microseconds",
+        "min": 0
+      },
+      {
+        "name": "total_fwd_packets",
+        "source_column": "Total Fwd Packets",
+        "dtype": "int",
+        "unit": "packets",
+        "min": 0
+      },
+      {
+        "name": "total_bwd_packets",
+        "source_column": "Total Backward Packets",
+        "dtype": "int",
+        "unit": "packets",
+        "min": 0
+      },
+      {
+        "name": "total_fwd_bytes",
+        "source_column": "Fwd Packets Length Total",
+        "dtype": "int",
+        "unit": "bytes",
+        "min": 0
+      },
+      {
+        "name": "total_bwd_bytes",
+        "source_column": "Bwd Packets Length Total",
+        "dtype": "int",
+        "unit": "bytes",
+        "min": 0
+      },
+      {
+        "name": "fwd_pkt_len_mean",
+        "source_column": "Fwd Packet Length Mean",
+        "dtype": "float",
+        "unit": "bytes",
+        "min": 0
+      },
+      {
+        "name": "bwd_pkt_len_mean",
+        "source_column": "Bwd Packet Length Mean",
+        "dtype": "float",
+        "unit": "bytes",
+        "min": 0
+      },
+      {
+        "name": "pkt_len_std",
+        "source_column": "Packet Length Std",
+        "dtype": "float",
+        "unit": "bytes",
+        "min": 0
+      },
+      {
+        "name": "flow_bytes_per_s",
+        "source_column": "Flow Bytes/s",
+        "dtype": "float",
+        "unit": "bytes/second",
+        "min": 0
+      },
+      {
+        "name": "flow_pkts_per_s",
+        "source_column": "Flow Packets/s",
+        "dtype": "float",
+        "unit": "packets/second",
+        "min": 0
+      },
+      {
+        "name": "flow_iat_mean",
+        "source_column": "Flow IAT Mean",
+        "dtype": "float",
+        "unit": "microseconds",
+        "min": 0
+      },
+      {
+        "name": "flow_iat_std",
+        "source_column": "Flow IAT Std",
+        "dtype": "float",
+        "unit": "microseconds",
+        "min": 0
+      },
+      {
+        "name": "flow_iat_max",
+        "source_column": "Flow IAT Max",
+        "dtype": "float",
+        "unit": "microseconds",
+        "min": 0
+      },
+      {
+        "name": "syn_flag_count",
+        "source_column": "SYN Flag Count",
+        "dtype": "int",
+        "unit": "count",
+        "min": 0
+      },
+      {
+        "name": "ack_flag_count",
+        "source_column": "ACK Flag Count",
+        "dtype": "int",
+        "unit": "count",
+        "min": 0
+      },
+      {
+        "name": "rst_flag_count",
+        "source_column": "RST Flag Count",
+        "dtype": "int",
+        "unit": "count",
+        "min": 0
+      },
+      {
+        "name": "fin_flag_count",
+        "source_column": "FIN Flag Count",
+        "dtype": "int",
+        "unit": "count",
+        "min": 0
+      },
+      {
+        "name": "psh_flag_count",
+        "source_column": "PSH Flag Count",
+        "dtype": "int",
+        "unit": "count",
+        "min": 0
+      }
+    ],
+    "categorical_features": [
+      {
+        "name": "protocol",
+        "source_column": "Protocol",
+        "dtype": "int",
+        "allowed": [
+          1,
+          6,
+          17
+        ]
+      }
+    ],
+    "missing_value_policy": "No imputation. Training drops rows with missing or non-finite values. Inference rejects them; the collector decides what to do with such flows.",
+    "excluded_on_purpose": [
+      "destination_port",
+      "source_port",
+      "src_ip",
+      "dst_ip",
+      "timestamp",
+      "flow_id",
+      "label"
+    ]
+  },
+  "features": [
+    "flow_duration_us",
+    "total_fwd_packets",
+    "total_bwd_packets",
+    "total_fwd_bytes",
+    "total_bwd_bytes",
+    "fwd_pkt_len_mean",
+    "bwd_pkt_len_mean",
+    "pkt_len_std",
+    "flow_bytes_per_s",
+    "flow_pkts_per_s",
+    "flow_iat_mean",
+    "flow_iat_std",
+    "flow_iat_max",
+    "syn_flag_count",
+    "ack_flag_count",
+    "rst_flag_count",
+    "fin_flag_count",
+    "psh_flag_count",
+    "protocol"
+  ],
+  "classes": [
+    "Benign",
+    "Bot",
+    "DDoS",
+    "DoS GoldenEye",
+    "DoS Hulk",
+    "DoS Slowhttptest",
+    "DoS slowloris",
+    "FTP-Patator",
+    "PortScan",
+    "SSH-Patator",
+    "Web Attack - Brute Force",
+    "Web Attack - XSS"
+  ],
+  "label_mapping": {
+    "Benign": 0,
+    "Bot": 1,
+    "DDoS": 2,
+    "DoS GoldenEye": 3,
+    "DoS Hulk": 4,
+    "DoS Slowhttptest": 5,
+    "DoS slowloris": 6,
+    "FTP-Patator": 7,
+    "PortScan": 8,
+    "SSH-Patator": 9,
+    "Web Attack - Brute Force": 10,
+    "Web Attack - XSS": 11
+  },
+  "benign_label": "Benign",
+  "task": "multiclass",
+  "params": {
+    "n_estimators": 100,
+    "max_depth": null,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced_subsample",
+    "random_state": 42
+  },
+  "seed": 42,
+  "plumbing_only": false,
+  "dataset": {
+    "name": "CIC-IDS2017 (Kaggle dhoogla, cleaned parquet)",
+    "version": "Kaggle V3, downloaded 2026-10-25",
+    "licence": "CC BY-NC-SA 4.0 (Kaggle dhoogla/cicids2017; original data: Canadian Institute for Cybersecurity)",
+    "source_url": "https://www.kaggle.com/datasets/dhoogla/cicids2017",
+    "file_sha256": "55fd22a7f02d696377ff4221e3984ce4f7732d4235d7d988997d9509959be52e"
+  },
+  "cleaning": {
+    "rows_raw": 2313810,
+    "dropped_missing_or_non_finite": 0,
+    "dropped_below_min": 88,
+    "dropped_non_integer": 0,
+    "dropped_unknown_category": 1589,
+    "dropped_duplicates": 332355,
+    "dropped_rare_classes": {
+      "Infiltration": 36,
+      "Web Attack - Sql Injection": 20,
+      "Heartbleed": 11
+    },
+    "rows_clean": 1979711,
+    "class_counts": {
+      "Benign": 1644562,
+      "DoS Hulk": 171987,
+      "DDoS": 128009,
+      "DoS GoldenEye": 10281,
+      "FTP-Patator": 5931,
+      "DoS slowloris": 5270,
+      "DoS Slowhttptest": 5186,
+      "SSH-Patator": 3153,
+      "PortScan": 1916,
+      "Web Attack - Brute Force": 1427,
+      "Bot": 1337,
+      "Web Attack - XSS": 652
+    }
+  },
+  "split": {
+    "method": "stratified",
+    "group_col": null,
+    "time_col": null,
+    "test_size": 0.2,
+    "val_size": 0.2,
+    "rows_train": 1267014,
+    "rows_val": 316754,
+    "rows_test": 395943
+  },
+  "packages": {
+    "python": "3.11.9",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.0",
+    "numpy": "2.4.6",
+    "joblib": "1.6.0"
+  },
+  "artifact_sha256": "a6b041dae63ab3c7b1143d0ca4c7d41a6f83a311e925878b23fcc373ac72ec69"
+}

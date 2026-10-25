@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0-draft",
+  "flow_definition": "Bidirectional flow as produced by CICFlowMeter. fwd = direction of first packet, bwd = reverse.",
+  "numeric_features": [
+    {"name": "flow_duration_us", "source_column": "Flow Duration", "dtype": "int", "unit": "microseconds", "min": 0},
+    {"name": "total_fwd_packets", "source_column": "Total Fwd Packets", "dtype": "int", "unit": "packets", "min": 0},
+    {"name": "total_bwd_packets", "source_column": "Total Backward Packets", "dtype": "int", "unit": "packets", "min": 0},
+    {"name": "total_fwd_bytes", "source_column": "Fwd Packets Length Total", "dtype": "int", "unit": "bytes", "min": 0},
+    {"name": "total_bwd_bytes", "source_column": "Bwd Packets Length Total", "dtype": "int", "unit": "bytes", "min": 0},
+    {"name": "fwd_pkt_len_mean", "source_column": "Fwd Packet Length Mean", "dtype": "float", "unit": "bytes", "min": 0},
+    {"name": "bwd_pkt_len_mean", "source_column": "Bwd Packet Length Mean", "dtype": "float", "unit": "bytes", "min": 0},
+    {"name": "pkt_len_std", "source_column": "Packet Length Std", "dtype": "float", "unit": "bytes", "min": 0},
+    {"name": "flow_bytes_per_s", "source_column": "Flow Bytes/s", "dtype": "float", "unit": "bytes/second", "min": 0},
+    {"name": "flow_pkts_per_s", "source_column": "Flow Packets/s", "dtype": "float", "unit": "packets/second", "min": 0},
+    {"name": "flow_iat_mean", "source_column": "Flow IAT Mean", "dtype": "float", "unit": "microseconds", "min": 0},
+    {"name": "flow_iat_std", "source_column": "Flow IAT Std", "dtype": "float", "unit": "microseconds", "min": 0},
+    {"name": "flow_iat_max", "source_column": "Flow IAT Max", "dtype": "float", "unit": "microseconds", "min": 0},
+    {"name": "syn_flag_count", "source_column": "SYN Flag Count", "dtype": "int", "unit": "count", "min": 0},
+    {"name": "ack_flag_count", "source_column": "ACK Flag Count", "dtype": "int", "unit": "count", "min": 0},
+    {"name": "rst_flag_count", "source_column": "RST Flag Count", "dtype": "int", "unit": "count", "min": 0},
+    {"name": "fin_flag_count", "source_column": "FIN Flag Count", "dtype": "int", "unit": "count", "min": 0},
+    {"name": "psh_flag_count", "source_column": "PSH Flag Count", "dtype": "int", "unit": "count", "min": 0}
+  ],
+  "categorical_features": [
+    {"name": "protocol", "source_column": "Protocol", "dtype": "int", "allowed": [1, 6, 17]}
+  ],
+  "missing_value_policy": "No imputation. Training drops rows with missing or non-finite values. Inference rejects them; the collector decides what to do with such flows.",
+  "excluded_on_purpose": ["destination_port", "source_port", "src_ip", "dst_ip", "timestamp", "flow_id", "label"]
+}
